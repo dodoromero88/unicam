@@ -1,1 +1,3 @@
-console.log("Hello");
+console.log("Hello World!");
+
+//initialized server
