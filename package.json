@@ -1,0 +1,19 @@
+{
+  "name": "unicamnodetest",
+  "version": "1.0.0",
+  "description": "A simple teset",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dodoromero88/unicam.git"
+  },
+  "author": "dodo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dodoromero88/unicam/issues"
+  },
+  "homepage": "https://github.com/dodoromero88/unicam#readme"
+}
