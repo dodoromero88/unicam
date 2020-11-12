@@ -12,7 +12,28 @@
   </head>
   <body>
     <h1>Benvenuto Utente </h1>
-    <h2>Nella tua sessione privata <%=user%> e pagina utente persole!</h2>
+    <h2>Nella tua sessione privata  e pagina utente persole!</h2>
+
+    <div class="container">
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nomw</th>
+              <th scope="col">Cognome</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% students.forEach(function(student){ %>
+              <tr>
+                <td class="align-baseline"><%= student.id %></td>
+                <td class="align-top"><%= student.name %></td>
+                <td class="align-top"><%= student.surname %></td>
+              </tr>
+            <%  }); %>
+          </tbody>
+      </table>
+    </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

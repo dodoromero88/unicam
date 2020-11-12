@@ -6,7 +6,7 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var cookieSession = require('cookie-session');
 var cookieParser = require('cookie-parser');
-
+var sqllite = require("./module/sqlite.js");
 const app = express();
 
 //object  utente static to admin
@@ -66,7 +66,13 @@ app.post('/login', function (req,res) {
 });
 
 app.get('/students',checkAuthentication, function(req,res) {
-    res.render('students',admin_user);
+    //Load the student from db
+    sqllite.getStudents( function (students) {
+        res.render('students',{
+            "students": students
+        });
+    });
+    
 });
 
 // Initialize the server
