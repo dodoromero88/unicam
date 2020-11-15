@@ -30,7 +30,10 @@ app.get('/',function(req,res){
 });
 */
 
+//function to check
 var checkAuthentication = function(req,res,next) {
+    //console.log(req.session);
+    //console.log(req.session.admin_user);
     if(req.session && req.session.admin_user){
         next();
     }
@@ -69,7 +72,7 @@ app.get('/students',checkAuthentication, function(req,res) {
     //Load the student from db
     sqllite.getStudents( function (students) {
         res.render('students',{
-            "students": students
+            "students_data": students
         });
     });
     
