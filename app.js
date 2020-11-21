@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var cookieSession = require('cookie-session');
 var cookieParser = require('cookie-parser');
 var sqllite = require("./module/sqlite.js");
+const sqlite = require('./module/sqlite.js');
 const app = express();
 
 //object  utente static to admin
@@ -77,6 +78,39 @@ app.get('/students',checkAuthentication, function(req,res) {
     });
     
 });
+
+
+
+app.get('/student/:studentId',checkAuthentication,function(req,res) {
+    var _id = req.params.studentId;
+    sqllite.getStudent(_id,function (student) {
+        res.render('student',{
+            "student":student
+        });
+    });
+});
+
+app.get('api/student/:studentId',checkAuthentication,function(req,res) {
+    var _id = req.params.studentId;
+    sqllite.getStudent(_id,function (student) {
+        res.send(student);
+    });
+});
+
+
+
+
+
+
+app.get('/logout',function(req,res){
+    req.session.user =undefined;
+    res.render('login');
+});
+
+
+
+
+
 
 // Initialize the server
 app.listen(3000,function(){

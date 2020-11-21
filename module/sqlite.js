@@ -28,5 +28,24 @@ module.exports = {
             callback(students);
         });
         db.close;
+    } ,
+
+    getStudent: function(id, callback){
+        let db = new sqlite3.Database(database);
+        let sql = `SELECT * FROM STUDENT WHERE STUDENT_ID=?`;
+        
+        db.all(sql,[id], (err,rows)=>{
+            if(err){
+                throw err;
+            }
+            rows.forEach((row)=>{
+                var student = {};
+                student.name = row.NAME;
+                student.surname = row.SURNAME;
+                console.log("single student", student);
+                callback(student);
+            });
+        });
+        db.close();
     }
 }
