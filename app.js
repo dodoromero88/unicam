@@ -23,6 +23,7 @@ app.use(cookieSession({
     name: 'session',
     keys: ['username']
 }))
+
 /**
  * Ejs uses by default the views in the 'views' folder
  
@@ -53,7 +54,7 @@ app.get('/',function(req,res){
 
 app.post('/login', function (req,res) {
     //console.log(req);
-    console.log(req.body);
+    //console.log(req.body);
     user = req.body.email;
     password = req.body.password;
     session = req.session;
@@ -103,8 +104,10 @@ app.get('api/student/:studentId',checkAuthentication,function(req,res) {
 
 
 app.get('/logout',function(req,res){
-    req.session.user =undefined;
-    res.render('login');
+    req.session.admin_user =undefined;
+    console.log(req.session);
+    console.log(req.session.admin_user);
+    res.redirect('/');
 });
 
 
