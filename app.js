@@ -41,7 +41,7 @@ var checkAuthentication = function(req,res,next) {
     }
     else{
         //user doesn't have access, return an http 401 response
-        res.redirect("/");
+        res.redirect("/err");
     }
 };
 
@@ -91,7 +91,7 @@ app.get('/student/:studentId',checkAuthentication,function(req,res) {
     });
 });
 
-app.get('api/student/:studentId',checkAuthentication,function(req,res) {
+app.get('/api/student/:studentId',checkAuthentication,function(req,res) {
     var _id = req.params.studentId;
     sqllite.getStudent(_id,function (student) {
         res.send(student);
@@ -105,14 +105,16 @@ app.get('api/student/:studentId',checkAuthentication,function(req,res) {
 
 app.get('/logout',function(req,res){
     req.session.admin_user =undefined;
-    console.log(req.session);
+    //console.log(req.session);
     console.log(req.session.admin_user);
     res.redirect('/');
 });
 
 
 
-
+app.get('/err',function(req,res){
+res.render('err');
+});
 
 
 // Initialize the server
